@@ -82,6 +82,10 @@ class User(UserMixin, db.Model):
     comments = relationship("Comment", backref="user")
 
 
+with app.app_context():
+    db.create_all()
+
+
 def admin_only(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
